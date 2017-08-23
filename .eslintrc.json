@@ -1,0 +1,18 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "sourceType": "module"
+  },
+  "rules": {
+    "semi": [1, "never"],
+    "require-await": [2],
+    "space-before-function-paren": ["warn", {
+      "anonymous": "always",
+      "named": "always",
+      "asyncArrow": "always"
+    }],
+    "arrow-parens":"warn",
+    "arrow-body-style":"warn",
+    "quotes": ["error", "single"]
+  }
+}

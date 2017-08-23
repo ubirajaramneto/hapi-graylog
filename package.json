@@ -1,0 +1,21 @@
+{
+  "name": "hsl-graylog-plugin",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test nyc tape test/*.js report --reporter=html | tap-nyc",
+    "test-udp": "NODE_ENV=test tape test/udp.js | tap-nyc"
+  },
+  "author": "Ubirajara Marsicano Neto",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.4.1",
+    "nyc": "^11.1.0",
+    "tap-nyc": "^1.0.2",
+    "tape": "^4.8.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
