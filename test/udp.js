@@ -1,47 +1,45 @@
 'use strict'
 
 const path = require('path')
-const os = require('os')
 const test = require('tape')
 const UDPInterface = require(path.resolve('lib/sending-interfaces/udp.js'))
 
 const gelfProperTransformedObject = {
   'version': '1.1',
-  'host': os.hostname(),
-  'short_message': 'some simple message',
-  '_something': 'asdasfbanadghasfdjaeytngdh'
+  'host': 'hapiplugin.org',
+  'short_message': 'some simple non chunked message',
+  'level': 5,
+  '_something': 'asdasfbanadghasfdjaeytngdhasdasfbanadghasfdjaeytngdh',
+  '_something1': 'asdasfbanadghasfdjaeytngdhasdasfbanadghasfdjaeytngdh',
+  '_something2': 'asdasfbanadghasfdjaeytngdhasdasfbanadghasfdjaeytngdh',
+  '_something3': 'asdasfbanadghasfdjaeytngdhasdasfbanadghasfdjaeytngdh',
+  '_something4': 'asdasfbanadghasfdjaeytngdhasdasfbanadghasfdjaeytngdh'
 }
 
-// test('UDPInterface should buffer the gelfobject',(t) => {
-//   t.plan(1)
-//   let udpSender = new UDPInterface(gelfProperTransformedObject)
-//   console.log('BUFFER', udpSender.getGelfBuffer())
-//   console.log('BUFFER SIZE', udpSender.getGelfBufferSize())
-//   console.log('CHUNK TOTAL: ', udpSender.calculateChunkTotal())
-//   t.ok(true)
-// })
+const chunkedGelfProperTransformedObject = {
+  'version': '1.1',
+  'host': 'hapiplugin.org',
+  'short_message': 'some simple chunked message',
+  'level': 5,
+  '_something': 'asdasfbanadghasfdjaeytngdhasdasfbanadghasfdjaeytngdh',
+  '_something1': 'asdasfbanadghasfdjaeytngdhasdasfbanadghasfdjaeytngdh',
+  '_something2': 'asdasfbanadghasfdjaeytngdhasdasfbanadghasfdjaeytngdh',
+  '_something3': 'asdasfbanadghasfdjaeytngdhasdasfbanadghasfdjaeytngdh',
+  '_something4': 'asdasfbanadghasfdjaeytngdhasdasfbanadghasfdjaeytngdh'
+}
 
-test('call send from interface', (t) => {
+test('test gelf sending without chunking', (t) => {
   t.plan(1)
   let udpSender = new UDPInterface(gelfProperTransformedObject)
   udpSender.send()
   t.ok(true)
 })
 
-test('is gelf payload chunkable', (t) => {
+test('test chuked gelf', (t) => {
   t.plan(1)
-  let udpSender = new UDPInterface(gelfProperTransformedObject)
-  t.equal((udpSender.isPayloadChunkable()), false)
-})
-
-test('test chunk construction', (t) => {
-  t.plan(1)
-  let udpSender = new UDPInterface(gelfProperTransformedObject, {
-    MAX_BUFFER_SIZE: 60
+  let udpSender = new UDPInterface(chunkedGelfProperTransformedObject, {
+    MAX_BUFFER_SIZE: 230
   })
-  console.log('BUFFER', udpSender.getGelfBuffer().toString('hex'))
-  console.log('BUFFER SIZE', udpSender.getGelfBufferSize())
-  console.log('CHUNK TOTAL: ', udpSender.calculateChunkTotal())
-  console.log(udpSender.prepareChunkedGelf())
+  udpSender.send()
   t.ok(true)
 })
