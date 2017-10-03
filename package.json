@@ -1,7 +1,7 @@
 {
   "name": "hapi-graylog",
   "version": "0.1.1",
-  "description": "A simple graylog interface for hapi.js",
+  "description": "A simple graylog interface for hapi.js.",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test nyc tape test/unit/*.js report --reporter=html | tap-nyc",
