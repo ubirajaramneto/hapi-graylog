@@ -1,8 +1,8 @@
 # hapi-graylog
 
-### A simple hapi.js logger for graylog
+## A simple hapi.js logger for graylog
 
-#### How to install?
+### How to install?
 
 <code>npm install hapi-graylog</code>
 
@@ -10,7 +10,7 @@ If you want to save it to your package.json file:
 
 <code>npm install -save hapi-graylog</code>
 
-#### What this plugin does?
+### What this plugin does?
 
 This plugin was developed in order to send GELF messages from a hapi.js server to a graylog instance through Hapi.js request interface.
 
@@ -18,11 +18,11 @@ The messages are sent in the GELF Format, which you can find more information [h
 
 To send a log message to the Graylog node, just do a request.log() call, and a GELF message will be fired.
 
-#### Does this module sends GELF messages through TCP or HTTP?
+### Does this module sends GELF messages through TCP or HTTP?
 
 No, this plugin can only send messages through UDP, although coding a TCP interface would be very easy to do. Just open an issue if you need it or contribute to the project by coding the TCP interface. Any help is appreciated.
 
-#### Why this plugin was created?
+### Why this plugin was created?
 
 I wanted a Graylog library that was well maintained in order to use it to create a Hapi.js plugin.
 
@@ -34,16 +34,16 @@ The whole core code for this plugin wont pass the 300 lines of code mark, and I 
 
 ---
 
-## How do I use this plugin?
+# How do I use this plugin?
 
-#### For local development:
+### For local development:
 
 1 - First, register it as a hapi plugin:
 
 ```javascript
     server.register(require('hapi-graylog'), (err) => {
       if(err) console.log(err)
-      ...
+      //...
     })
 ```
 
@@ -57,7 +57,7 @@ The whole core code for this plugin wont pass the 300 lines of code mark, and I 
 
 </code>
 
-#### For sending messages to a production/staging graylog server:
+### For sending messages to a production/staging graylog server:
 
 1 - First register it as a hapi plugin, and describe your configuration options:
 
@@ -73,7 +73,7 @@ The whole core code for this plugin wont pass the 300 lines of code mark, and I 
       }
     }, (err) => {
       if(err) console.log(err)
-      ...
+      //...
     })
 ```
 
@@ -85,20 +85,20 @@ The whole core code for this plugin wont pass the 300 lines of code mark, and I 
     request.log('emergency', {some_field: 'some data', short_message: 'foobar'})
 ```
 
-### Important Note:
+## Important Note:
 
 If you send an array of tags as the first argument of the request.log() method, only the first tag will be sent to the graylog server.
 
 Also, the second argument accepts an object, you can send anything you want, the plugin will never thrown an error and will force the correct format if you put any invalid fields, such as `id` which graylog drops automatically. If any problems occur, the plugin will fail silently and only output a message to the console, this is by design.
 
-#### Plugin register options:
+### Plugin register options:
 
 * host - String
 * port - Integer
 * config - Object
     * MAX_BUFFER_SIZE - Integer
 
-#### Standards for log levels:
+### Standards for log levels:
 
 http://www.kiwisyslog.com/help/syslog/index.html?protocol_levels.htm
 
@@ -118,7 +118,7 @@ http://www.kiwisyslog.com/help/syslog/index.html?protocol_levels.htm
 
 7 - Debug: debug-level messages
 
-#### How to contribute?
+### How to contribute?
 
 For now I'm not expecting to have any help on this, but what I have done in the latest development cyle in order to have a decent feedback loop, is to have a local vagrant instance with graylog on it and sending GELF logs to it, it's the only way to be certain that graylog is receiving and getting all the logs in the correct format.
 
@@ -136,7 +136,7 @@ The test scripts are:
 
 All tests generate a coverage report.
 
-#### Roadmap:
+### Roadmap:
 
 1 - Probably will change the testing framework from tape.js to Ava.js, not sure yet.
 
