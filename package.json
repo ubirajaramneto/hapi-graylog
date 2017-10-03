@@ -1,7 +1,7 @@
 {
   "name": "hapi-graylog",
   "version": "0.1.0",
-  "description": "",
+  "description": "A simple graylog interface for hapi.js",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test nyc tape test/unit/*.js report --reporter=html | tap-nyc",
@@ -11,6 +11,14 @@
   },
   "author": "Ubirajara Marsicano Neto",
   "license": "MIT",
+  "repository": "git://github.com/ubirajaramneto/hapi-graylog",
+  "keywords": [
+    "hapi",
+    "logging",
+    "log",
+    "monitoring",
+    "graylog"
+  ],
   "devDependencies": {
     "eslint": "^4.4.1",
     "hapi": "^16.6.2",

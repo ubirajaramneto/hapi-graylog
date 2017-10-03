@@ -1,6 +1,6 @@
 # hapi-graylog
 
-## A simple hapi.js logger for graylog
+## A simple graylog interface for hapi.js
 
 ### How to install?
 
