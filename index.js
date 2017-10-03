@@ -10,9 +10,9 @@ exports.register = function (server, options, next) {
       const gelfPayload = gelfFactory(event.data.short_message, event.data, event.tags[0])
       const udpSender = new UDPInterface(
         gelfPayload,
-        options.gelfServerOptions,
-        options.graylogPort,
-        options.graylogHost
+        options.config,
+        options.port,
+        options.host
       )
       console.log(gelfPayload)
       udpSender.send()
