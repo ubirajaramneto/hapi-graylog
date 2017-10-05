@@ -178,7 +178,3 @@ The test scripts are:
 `test-integration` - Runs a local hapi.js server instance, if you fire a GET request at the '/log' endpoint, it will fire a GELF message to the graylog local server
 
 All tests generate a coverage report.
-
-### Roadmap:
-
-1 - Probably will change the testing framework from tape.js to Ava.js, not sure yet.
