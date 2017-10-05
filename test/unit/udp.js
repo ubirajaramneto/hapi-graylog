@@ -56,7 +56,9 @@ const largeGelfObject = {
 test('test gelf sending without chunking', (t) => {
   t.plan(1)
   let udpSender = new UDPInterface(gelfProperTransformedObject)
+  let udpSenderNoCompress = new UDPInterface(gelfProperTransformedObject, {MAX_BUFFER_SIZE: 1350, COMPRESS: false})
   udpSender.send()
+  udpSenderNoCompress.send()
   t.ok(true)
 })
 
@@ -65,14 +67,20 @@ test('test chuked gelf', (t) => {
   let udpSender = new UDPInterface(chunkedGelfProperTransformedObject, {
     MAX_BUFFER_SIZE: 230
   })
+  let udpSenderNoCompress = new UDPInterface(chunkedGelfProperTransformedObject, {
+    MAX_BUFFER_SIZE: 230,
+    COMPRESS: false
+  })
   udpSender.send()
+  udpSenderNoCompress.send()
   t.ok(true)
 })
 
 test('should not send the payload if it is too big', (t) => {
   t.plan(1)
   let udpSender = new UDPInterface(largeGelfObject, {
-    MAX_BUFFER_SIZE: 20
+    MAX_BUFFER_SIZE: 20,
+    COMPRESS: false
   })
   udpSender.send()
   t.ok(true)

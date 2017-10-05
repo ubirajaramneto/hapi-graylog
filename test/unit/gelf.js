@@ -19,7 +19,7 @@ test('GelfFactory should create basic gelf message with short and detailed messa
 
 test('GelfFactory should create gelf message with data', (t) => {
   t.plan(1)
-  const gelfJson = GelfFactory('some short message', {facility: 'some facility', full_message: 'some full message'})
+  const gelfJson = GelfFactory({facility: 'some facility', full_message: 'some full message', short_message: 'some short message'}, 'notice')
   const gelfExpectedJson = {
     'version': '1.1',
     'host': os.hostname(),
@@ -33,7 +33,7 @@ test('GelfFactory should create gelf message with data', (t) => {
 
 test('GelfFactory should delete id key', (t) => {
   t.plan(1)
-  const gelfJson = GelfFactory('some short message', {facility: 'some facility', full_message: 'some full message', id: '1'})
+  const gelfJson = GelfFactory({facility: 'some facility', full_message: 'some full message', id: '1', short_message: 'some short message'}, 'notice')
   const gelfExpectedJson = {
     'version': '1.1',
     'host': os.hostname(),
@@ -47,61 +47,61 @@ test('GelfFactory should delete id key', (t) => {
 
 test('Testing tags', (t) => {
   t.plan(8)
-  const gelfJsonEmergency = GelfFactory('some short message', {}, 'emergency')
+  const gelfJsonEmergency = GelfFactory({}, 'emergency')
   const gelfExpectedJsonEmergency = {
     'version': '1.1',
     'host': os.hostname(),
     'level': 0,
-    'short_message': 'some short message',
+    'short_message': 'short_message not set',
   }
-  const gelfJsonAlert = GelfFactory('some short message', {}, 'alert')
+  const gelfJsonAlert = GelfFactory({}, 'alert')
   const gelfExpectedJsonAlert = {
     'version': '1.1',
     'host': os.hostname(),
     'level': 1,
-    'short_message': 'some short message',
+    'short_message': 'short_message not set',
   }
-  const gelfJsonCritical = GelfFactory('some short message', {}, 'critical')
+  const gelfJsonCritical = GelfFactory({}, 'critical')
   const gelfExpectedJsonCritical = {
     'version': '1.1',
     'host': os.hostname(),
     'level': 2,
-    'short_message': 'some short message',
+    'short_message': 'short_message not set',
   }
-  const gelfJsonError = GelfFactory('some short message', {}, 'error')
+  const gelfJsonError = GelfFactory({}, 'error')
   const gelfExpectedJsonError = {
     'version': '1.1',
     'host': os.hostname(),
     'level': 3,
-    'short_message': 'some short message',
+    'short_message': 'short_message not set',
   }
-  const gelfJsonWarning = GelfFactory('some short message', {}, 'warning')
+  const gelfJsonWarning = GelfFactory({}, 'warning')
   const gelfExpectedJsonWarning= {
     'version': '1.1',
     'host': os.hostname(),
     'level': 4,
-    'short_message': 'some short message',
+    'short_message': 'short_message not set',
   }
-  const gelfJsonNotice = GelfFactory('some short message', {}, 'notice')
+  const gelfJsonNotice = GelfFactory({}, 'notice')
   const gelfExpectedJsonNotice= {
     'version': '1.1',
     'host': os.hostname(),
     'level': 5,
-    'short_message': 'some short message',
+    'short_message': 'short_message not set',
   }
-  const gelfJsonInfo = GelfFactory('some short message', {}, 'info')
+  const gelfJsonInfo = GelfFactory({}, 'info')
   const gelfExpectedJsonInfo= {
     'version': '1.1',
     'host': os.hostname(),
     'level': 6,
-    'short_message': 'some short message',
+    'short_message': 'short_message not set',
   }
-  const gelfJsonDebug = GelfFactory('some short message', {}, 'debug')
+  const gelfJsonDebug = GelfFactory({}, 'debug')
   const gelfExpectedJsonDebug= {
     'version': '1.1',
     'host': os.hostname(),
     'level': 7,
-    'short_message': 'some short message',
+    'short_message': 'short_message not set',
   }
   t.deepEqual(gelfJsonEmergency, gelfExpectedJsonEmergency)
   t.deepEqual(gelfJsonAlert, gelfExpectedJsonAlert)
