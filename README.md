@@ -22,6 +22,10 @@ To send a log message to the Graylog node, just do a request.log() call, and a G
 
 No, this plugin can only send messages through UDP, although coding a TCP interface would be very easy to do. Just open an issue if you need it or contribute to the project by coding the TCP interface. Any help is appreciated.
 
+### Does this plugin allows compression?
+
+Yes, all GELF messages sent through UDP are compressed using ZLIB.
+
 ### Why this plugin was created?
 
 I wanted a Graylog library that was well maintained in order to use it to create a Hapi.js plugin.
@@ -68,7 +72,8 @@ The whole core code for this plugin wont pass the 300 lines of code mark, and I 
         host: 'your.graylog.server.url',        // <-- defaults to 'localhost'
         port: 12203,                            // <-- defaults to 12202
         config: {
-          MAX_BUFFER_SIZE: 700                  // <-- defaults to 1350
+          MAX_BUFFER_SIZE: 700,                  // <-- defaults to 1350
+          COMPRESS: true                        // <-- defaults to true
         }
       }
     }, (err) => {
@@ -91,12 +96,50 @@ If you send an array of tags as the first argument of the request.log() method, 
 
 Also, the second argument accepts an object, you can send anything you want, the plugin will never thrown an error and will force the correct format if you put any invalid fields, such as `id` which graylog drops automatically. If any problems occur, the plugin will fail silently and only output a message to the console, this is by design.
 
+### For sending server logs not tied to a specific request:
+
+1 - First register it as a hapi plugin, and describe your configuration options:
+
+```javascript
+    server.register({
+      register: require('hapi-graylog'),
+      options: {
+        host: 'your.graylog.server.url',        // <-- defaults to 'localhost'
+        port: 12203,                            // <-- defaults to 12202
+        config: {
+          MAX_BUFFER_SIZE: 700,                  // <-- defaults to 1350
+          COMPRESS: true                        // <-- defaults to true
+        }
+      }
+    }, (err) => {
+      if(err) console.log(err)
+      //...
+    })
+```
+
+2 - Log server events not tied to a request:
+
+```javascript
+    server.start((err) => {
+    
+      if (err) {
+        throw err
+      }
+    
+      console.log(`Server running at: ${server.info.uri}`)
+      server.log('info', {server_message: 'server started at' + server.info.uri}) // <-- This will send a GELF Message
+                                                                                  //     to the graylogserver.
+    
+    })
+```
+
 ### Plugin register options:
 
 * host - String
 * port - Integer
 * config - Object
     * MAX_BUFFER_SIZE - Integer
+    * COMPRESS - Boolean
 
 ### Standards for log levels:
 
