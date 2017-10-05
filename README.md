@@ -182,9 +182,3 @@ All tests generate a coverage report.
 ### Roadmap:
 
 1 - Probably will change the testing framework from tape.js to Ava.js, not sure yet.
-
-2 - Allow for triggering a log event by calling server.log()
-
-3 - Enhancing the docs, if you have suggestions on how to improve the docs please open a issue. And if possible a pull request :)
-
-
