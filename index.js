@@ -1,8 +1,7 @@
 'use strict'
 
-const path = require('path')
-const UDPInterface = require(path.resolve('lib/sending-interfaces/udp'))
-const gelfFactory = require(path.resolve('lib/gelf/index'))
+const UDPInterface = require('./lib/sending-interfaces/udp')
+const gelfFactory = require('./lib/gelf/index')
 
 let internals = {
   sendGelfMessage: function (tag, data, options) {
