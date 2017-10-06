@@ -13,9 +13,7 @@ let internals = {
         options.port,
         options.host
       )
-      console.log(gelfPayload)
       udpSender.send()
-      console.log('payload sent**')
     } catch(e) {
       console.log(e)
     }
