@@ -13,6 +13,7 @@
     }],
     "arrow-parens":"warn",
     "arrow-body-style":"warn",
-    "quotes": ["error", "single"]
+    "quotes": ["error", "single"],
+    "no-console": "warn"
   }
 }
