@@ -13,6 +13,7 @@ let internals = {
         options.port,
         options.host
       )
+      console.log('GELF: ', gelfPayload)
       udpSender.send()
     } catch(e) {
       console.log(e)
@@ -20,12 +21,12 @@ let internals = {
   },
   pluginFactory: function (logType, options) {
     if(logType === 'server') {
-      return function (event, tags) {
-        internals.sendGelfMessage(tags[0], event.data, options)
+      return function (event) {
+        internals.sendGelfMessage(event.tags[0], event.data, options)
       }
     } else if(logType === 'request') {
-      return function (request, event, tags) {
-        internals.sendGelfMessage(tags[0], event.data, options)
+      return function (request, event) {
+        internals.sendGelfMessage(event.tags[0], event.data, options)
       }
     }
   }
