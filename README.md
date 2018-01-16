@@ -71,8 +71,9 @@ The whole core code for this plugin wont pass the 300 lines of code mark, and I 
       options: {
         host: 'your.graylog.server.url',        // <-- defaults to 'localhost'
         port: 12203,                            // <-- defaults to 12202
+        source: 'your-apps-id.server.url'       // <-- defaults to os.hostname()
         config: {
-          MAX_BUFFER_SIZE: 700,                  // <-- defaults to 1350
+          MAX_BUFFER_SIZE: 700,                 // <-- defaults to 1350
           COMPRESS: true                        // <-- defaults to true
         }
       }
@@ -121,15 +122,15 @@ Also, the second argument accepts an object, you can send anything you want, the
 
 ```javascript
     server.start((err) => {
-    
+
       if (err) {
         throw err
       }
-    
+
       console.log(`Server running at: ${server.info.uri}`)
       server.log('info', {server_message: 'server started at' + server.info.uri}) // <-- This will send a GELF Message
                                                                                   //     to the graylogserver.
-    
+
     })
 ```
 
@@ -178,4 +179,3 @@ The test scripts are:
 `test-integration` - Runs a local hapi.js server instance, if you fire a GET request at the '/log' endpoint, it will fire a GELF message to the graylog local server
 
 All tests generate a coverage report.
-
