@@ -71,7 +71,7 @@ The whole core code for this plugin wont pass the 300 lines of code mark, and I 
       options: {
         host: 'your.graylog.server.url',        // <-- defaults to 'localhost'
         port: 12203,                            // <-- defaults to 12202
-        source: 'your-apps-id.server.url'       // <-- defaults to os.hostname()
+        source: 'your-apps-id.server.url',      // <-- defaults to os.hostname()
         config: {
           MAX_BUFFER_SIZE: 700,                 // <-- defaults to 1350
           COMPRESS: true                        // <-- defaults to true
@@ -138,6 +138,7 @@ Also, the second argument accepts an object, you can send anything you want, the
 
 * host - String
 * port - Integer
+* source - String - Defaults to `os.hostname()`, allows to override the source of logs appearing in graylog. 
 * config - Object
     * MAX_BUFFER_SIZE - Integer
     * COMPRESS - Boolean

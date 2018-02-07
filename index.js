@@ -6,7 +6,8 @@ const gelfFactory = require('./lib/gelf/index')
 let internals = {
   sendGelfMessage: function (tag, data, options) {
     try {
-      const gelfPayload = gelfFactory(data, tag, options.source)
+      data.source = options.source
+      const gelfPayload = gelfFactory(data, tag)
       const udpSender = new UDPInterface(
         gelfPayload,
         options.config,
