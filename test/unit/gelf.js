@@ -3,7 +3,7 @@
 const path = require('path')
 const os = require('os')
 const test = require('tape')
-const { GELFMessageFactory } = require(path.resolve('lib/gelf/index.js'))
+const { GelfFactory } = require(path.resolve('lib/gelf/index.js'))
 
 test('GELFMessageFactory should create basic gelf message with short and detailed message', (t) => {
   t.plan(1)
