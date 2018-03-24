@@ -1,13 +1,16 @@
 'use strict'
 const os = require('os')
 const UDPInterface = require('./lib/sending-interfaces/udp')
-const gelfFactory = require('./lib/gelf/index')
+const { parseLevel, GELFMessageFactory } = require('./lib/gelf')
 
 let internals = {
   sendGelfMessage: function (tag, data, options) {
     try {
       data.source = options.source
       const gelfPayload = gelfFactory(data, tag)
+      if (gelfPayload.level > options.level) {
+        return
+      }
       const udpSender = new UDPInterface(
         gelfPayload,
         options.config,
@@ -34,7 +37,7 @@ let internals = {
 
 exports.register = function (server, options, next) {
   options.source = options.source ? options.source : os.hostname()
-
+  options.level = parseLevel(options.level || 'debug')
   const serverLogHandler = internals.pluginFactory('server', options)
   const requestLogHandler = internals.pluginFactory('request', options)
   server.on('log', serverLogHandler)

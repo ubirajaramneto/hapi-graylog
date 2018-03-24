@@ -75,7 +75,8 @@ The whole core code for this plugin wont pass the 300 lines of code mark, and I 
         config: {
           MAX_BUFFER_SIZE: 700,                 // <-- defaults to 1350
           COMPRESS: true                        // <-- defaults to true
-        }
+        },
+        level: 'info'                           // <-- specify level to log
       }
     }, (err) => {
       if(err) console.log(err)
@@ -110,7 +111,8 @@ Also, the second argument accepts an object, you can send anything you want, the
         config: {
           MAX_BUFFER_SIZE: 700,                  // <-- defaults to 1350
           COMPRESS: true                        // <-- defaults to true
-        }
+        },
+        level: 'info'                           // <-- specify level to log. Levels less important than this won't be sent to graylog.
       }
     }, (err) => {
       if(err) console.log(err)
@@ -142,6 +144,7 @@ Also, the second argument accepts an object, you can send anything you want, the
 * config - Object
     * MAX_BUFFER_SIZE - Integer
     * COMPRESS - Boolean
+* level - String - Levels less important than this won't be sent to graylog.
 
 ### Standards for log levels:
 

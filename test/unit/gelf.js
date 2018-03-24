@@ -3,9 +3,9 @@
 const path = require('path')
 const os = require('os')
 const test = require('tape')
-const GelfFactory = require(path.resolve('lib/gelf/index.js'))
+const { GELFMessageFactory } = require(path.resolve('lib/gelf/index.js'))
 
-test('GelfFactory should create basic gelf message with short and detailed message', (t) => {
+test('GELFMessageFactory should create basic gelf message with short and detailed message', (t) => {
   t.plan(1)
   const gelfJson = GelfFactory({source: os.hostname(), }, '5')
   const gelfRequiredFields = {
@@ -17,7 +17,7 @@ test('GelfFactory should create basic gelf message with short and detailed messa
   t.deepEqual(gelfRequiredFields, gelfJson)
 })
 
-test('GelfFactory should create gelf message with data', (t) => {
+test('GELFMessageFactory should create gelf message with data', (t) => {
   t.plan(1)
   const gelfJson = GelfFactory({source: os.hostname(), facility: 'some facility', full_message: 'some full message', short_message: 'some short message'}, 'notice')
   const gelfExpectedJson = {
@@ -31,7 +31,7 @@ test('GelfFactory should create gelf message with data', (t) => {
   t.deepEqual(gelfJson, gelfExpectedJson)
 })
 
-test('GelfFactory should delete id key', (t) => {
+test('GELFMessageFactory should delete id key', (t) => {
   t.plan(1)
   const gelfJson = GelfFactory({source: os.hostname(), facility: 'some facility', full_message: 'some full message', id: '1', short_message: 'some short message'}, 'notice')
   const gelfExpectedJson = {
