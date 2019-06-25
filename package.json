@@ -1,6 +1,6 @@
 {
   "name": "hapi-graylog",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A simple graylog interface for hapi.js.",
   "main": "index.js",
   "scripts": {
