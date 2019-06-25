@@ -6,7 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test nyc tape test/unit/*.js report --reporter=html | tap-nyc",
     "test-gelf": "NODE_ENV=test nyc tape test/unit/gelf.js report --reporter=html | tap-nyc",
-    "test-udp": "NODE_ENV=test tape test/unit/udp.js | tap-nyc",
+    "test-udp": "NODE_ENV=test tape test/integration/udp.js | tap-nyc",
     "test-integration": "NODE_ENV=test node test/integration/hapijs-integration.js"
   },
   "author": "Ubirajara Marsicano Neto",
