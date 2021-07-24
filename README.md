@@ -168,9 +168,9 @@ http://www.kiwisyslog.com/help/syslog/index.html?protocol_levels.htm
 
 ### How to contribute?
 
-For now I'm not expecting to have any help on this, but what I have done in the latest development cyle in order to have a decent feedback loop, is to have a local vagrant instance with graylog on it and sending GELF logs to it, it's the only way to be certain that graylog is receiving and getting all the logs in the correct format.
+For now I'm not expecting to have any help on this, but what I have done in the latest development cycle in order to have a decent feedback loop, is to have a local vagrant instance with graylog on it and sending GELF logs to it, it's the only way to be certain that graylog is receiving and getting all the logs in the correct format.
 
-If you want to contribute just make a pull request here an I'll take a look.
+If you want to contribute just make a pull request here and I'll take a look.
 
 The test scripts are:
 
